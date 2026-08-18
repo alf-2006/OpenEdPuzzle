@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Tajawal } from "next/font/google";
+import { Geist, Geist_Mono, Tajawal, Nunito } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -9,8 +9,21 @@ const geist = Geist({
   display: "swap",
 });
 
-// Arabic support prepared (i18n lands later); variable registered now so
-// switching direction/language later is a className change, not a refactor.
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
+// Rounded, friendly, high-personality display font for headlines
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+  display: "swap",
+  weight: ["600", "700", "800", "900"],
+});
+
+// Arabic support: Tajawal provides warm, geometric, readable Arabic typography
 const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ["200", "300", "400", "500", "700", "800", "900"],
@@ -19,9 +32,9 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "WaslaLearn — Secure Video Learning",
+  title: "OpenEdPuzzle | WaslaLearn — Open Source Verifiable Video Learning",
   description:
-    "Verifiable video learning for classrooms. Cryptographically auditable progress, comprehension-gated checkpoints, and engagement analytics teachers actually use.",
+    "Next-Generation Interactive Video Learning & Anti-Cheat Analytics Platform. 100% Free and Open Source.",
 };
 
 export default function RootLayout({
@@ -29,11 +42,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geist.variable} ${tajawal.variable} font-sans`}>
+      <body className={`${geist.variable} ${geistMono.variable} ${nunito.variable} ${tajawal.variable} font-sans bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 const config: Config = {
   darkMode: "class",
@@ -16,8 +17,9 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist)", "system-ui", "sans-serif"],
-        arabic: ["var(--font-tajawal)", "var(--font-geist)", "sans-serif"],
+        display: ["var(--font-nunito)", "var(--font-geist)", "sans-serif"],
+        sans: ["var(--font-geist)", "var(--font-tajawal)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,48 +56,52 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      spacing: {
+        '1': '4px',
+        '2': '8px',
+        '3': '12px',
+        '4': '16px',
+        '5': '24px',
+        '6': '32px',
+        '7': '48px',
+        '8': '64px',
+        '9': '96px',
+        '10': '128px',
+      },
+      boxShadow: {
+        'sm': 'var(--shadow-sm)',
+        'DEFAULT': 'var(--shadow-md)',
+        'md': 'var(--shadow-md)',
+        'lg': 'var(--shadow-lg)',
+        'xl': 'var(--shadow-xl)',
+        'glow': 'var(--shadow-glow)',
+        'glow-accent': 'var(--shadow-glow-accent)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        shimmer: {
-          "100%": { transform: "translateX(100%)" },
-        },
         "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
+          from: { opacity: "0", transform: "translateY(10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
         "fade-out": {
           from: { opacity: "1" },
           to: { opacity: "0" },
         },
-        "blob-drift": {
-          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
-          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-          "66%": { transform: "translate(-20px, 20px) scale(0.95)" },
-        },
-        "pulse-radial": {
-          "0%, 100%": { opacity: "0.5", transform: "scale(1)" },
-          "50%": { opacity: "0.8", transform: "scale(1.05)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(-10px)" },
-          "50%": { transform: "translateY(10px)" },
-        },
       },
       animation: {
-        shimmer: "shimmer 2s infinite",
-        "fade-in": "fade-in 0.3s ease-out",
-        "fade-out": "fade-out 0.2s ease-in",
-        "blob-drift": "blob-drift 20s ease-in-out infinite",
-        "pulse-radial": "pulse-radial 4s ease-in-out infinite",
-        float: "float 4s ease-in-out infinite",
+        "fade-in": "fade-in 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+        "fade-out": "fade-out 0.2s ease-out",
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;

@@ -88,7 +88,7 @@ export function Testimonials() {
                   key={t.name}
                   aria-hidden={!isActive}
                   className={cn(
-                    "absolute inset-0 rounded-2xl border border-border bg-card p-8 shadow-lg transition-all duration-[600ms] ease-out motion-reduce:transition-none sm:p-10",
+                    "absolute inset-0 rounded-2xl border border-border bg-card p-8 shadow-lg transition-all duration-500 ease-out motion-reduce:transition-none sm:p-10",
                     isActive && "z-10 translate-x-0 opacity-100",
                     isExiting && "z-0 -translate-x-8 opacity-0",
                     !isActive && !isExiting && "z-0 translate-x-8 opacity-0",

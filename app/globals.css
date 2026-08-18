@@ -4,48 +4,104 @@
 
 @layer base {
   :root {
+    /* Pure white background */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
+
+    /* Card surfaces */
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
+
+    /* Popovers and dropdowns */
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
+
+    /* Blue-600 #2563EB */
     --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 0 0% 100%;
+    --primary-rgb: 37 99 235;
+
+    /* Slate-100 #F1F5F9 */
     --secondary: 210 40% 96%;
     --secondary-foreground: 222 47% 11%;
+
+    /* Muted surfaces and text */
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
+
+    /* Amber-500 #F59E0B */
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-rgb: 245 158 11;
+
+    /* Destructive actions */
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Slate-200 #E2E8F0 */
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 221 83% 53%;
+
+    /* Border radius */
     --radius: 0.75rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08);
+    --shadow-xl: 0 16px 48px rgba(15, 23, 42, 0.10);
+    --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.25);
+    --shadow-glow-accent: 0 0 20px rgba(245, 158, 11, 0.25);
   }
 
   .dark {
-    --background: 222 47% 4%;
+    /* Slate-900 #0F172A */
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 7%;
+
+    /* Slate-800 #1E293B */
+    --card: 217 33% 17%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 7%;
+
+    /* Dark popovers */
+    --popover: 217 33% 17%;
     --popover-foreground: 210 40% 98%;
+
+    /* Blue-500 #3B82F6 */
     --primary: 217 91% 60%;
     --primary-foreground: 222 47% 11%;
+    --primary-rgb: 59 130 246;
+
+    /* Dark secondary */
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
+
+    /* Dark muted */
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 263 70% 50%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
+
+    /* Amber-400 #FBBF24 */
+    --accent: 45 93% 47%;
+    --accent-foreground: 222 47% 11%;
+    --accent-rgb: 251 191 36;
+
+    /* Destructive in dark */
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Slate-700 #334155 */
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
     --ring: 217 91% 60%;
+
+    /* Enhanced shadows for dark mode */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.35);
+    --shadow-glow-accent: 0 0 20px rgba(251, 191, 36, 0.35);
   }
 }
 
@@ -53,49 +109,64 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.65;
+  }
+
+  /* Headlines with Nunito Rounded font & tight line-height */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-nunito), var(--font-geist), sans-serif;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
   }
 }
 
 @layer utilities {
-  /* App page transitions (pure CSS — no JS animation in /app) */
-  .page-enter {
-    animation: fade-in 0.3s ease-out;
-  }
-  .page-exit {
-    animation: fade-out 0.2s ease-in;
-  }
-
-  .btn-hover {
-    @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
-  }
-
-  .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
-  }
-
-  .row-hover {
-    @apply transition-colors duration-150 hover:bg-muted/50;
-  }
-
+  /* Skeleton loading state */
   .skeleton {
-    @apply animate-pulse bg-muted;
+    @apply animate-pulse bg-muted rounded;
   }
 
-  /* Landing: gradient mesh blobs (CSS only, no canvas) */
-  .mesh-blob {
-    @apply absolute rounded-full blur-3xl;
-    will-change: transform;
+  /* Focus visible ring */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
   }
 
-  /* Landing: CTA radial pulse backdrop */
-  .cta-pulse {
-    background: radial-gradient(
-      ellipse at center,
-      hsl(var(--primary) / 0.15) 0%,
-      transparent 70%
-    );
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Real physical layered shadows */
+  .real-shadow {
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.03),
+      0 3px 6px rgba(15, 23, 42, 0.04),
+      0 8px 16px rgba(15, 23, 42, 0.05),
+      0 16px 32px rgba(15, 23, 42, 0.06);
+  }
+
+  .real-shadow-xl {
+    box-shadow:
+      0 2px 4px rgba(15, 23, 42, 0.03),
+      0 6px 12px rgba(15, 23, 42, 0.04),
+      0 16px 32px rgba(15, 23, 42, 0.06),
+      0 32px 64px rgba(15, 23, 42, 0.08),
+      0 48px 96px rgba(37, 99, 235, 0.08);
+  }
+
+  /* Reduced motion accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

@@ -103,7 +103,7 @@ export async function submitHeartbeat(params: {
 export async function joinClassByCode(joinCode: string) {
   const supabase = createClient();
   const { data, error } = await supabase.rpc("join_class_by_code", {
-    p_join_code: joinCode,
+    p_code: joinCode,
   });
   if (error) throw error;
   return data;

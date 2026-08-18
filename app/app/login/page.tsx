@@ -1,12 +1,11 @@
-import { Suspense } from "react";
-import { LoginForm } from "./login-form";
+import { Metadata } from "next";
+import MsSignInCard from "@/components/ui/ms-sign-in-card";
 
-export const metadata = { title: "Sign in — WaslaLearn" };
+export const metadata: Metadata = {
+  title: "Sign in — WaslaLearn",
+  description: "Sign in to your WaslaLearn account.",
+};
 
-export default function LoginPage() {
-  return (
-    <Suspense>
-      <LoginForm />
-    </Suspense>
-  );
+export default function DemoOne() {
+  return <MsSignInCard />;
 }

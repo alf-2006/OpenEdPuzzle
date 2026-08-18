@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "i.ytimg.com" },      // YouTube thumbnails
       { protocol: "https", hostname: "img.youtube.com" },  // YouTube thumbnails (alt)
+      { protocol: "https", hostname: "upload.wikimedia.org" },  // Microsoft logo
     ],
   },
   // GSAP + Lenis are imported ONLY by landing-page components via next/dynamic
